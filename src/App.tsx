@@ -1,3 +1,4 @@
+import FlowluApiExplorer from "./tools/FlowluApiExplorer";
 import { useEffect, useState, useCallback } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { JobList } from './components/JobList';
@@ -128,6 +129,8 @@ function App() {
   ];
 
   return (
+  <>
+    {/*
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -146,7 +149,10 @@ function App() {
                     onClick={() => setView(item.key)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${view === item.key ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                   >
-                    <span className="flex items-center gap-1.5"><item.icon className="w-4 h-4" />{item.label}</span>
+                    <span className="flex items-center gap-1.5">
+                      <item.icon className="w-4 h-4" />
+                      {item.label}
+                    </span>
                   </button>
                 ))}
               </nav>
@@ -266,7 +272,14 @@ function App() {
       )}
 
       {detailJobId && (
-        <JobDetail jobId={detailJobId} onClose={() => setDetailJobId(null)} onEdit={j => { setDetailJobId(null); setFormJob(j); }} />
+        <JobDetail
+          jobId={detailJobId}
+          onClose={() => setDetailJobId(null)}
+          onEdit={j => {
+            setDetailJobId(null);
+            setFormJob(j);
+          }}
+        />
       )}
 
       {deleteConfirm && (
@@ -274,18 +287,18 @@ function App() {
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-1">Delete Job</h3>
             <p className="text-sm text-gray-600 mb-5">
-              Are you sure you want to delete "{deleteConfirm.title}" at {deleteConfirm.company_name}? This will also remove all linked tasks, contacts, and activity logs.
+              Are you sure you want to delete "{deleteConfirm.title}" at {deleteConfirm.company_name}?
             </p>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setDeleteConfirm(null)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDeleteJob(deleteConfirm)}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700"
+                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg"
               >
                 Delete
               </button>
@@ -294,7 +307,11 @@ function App() {
         </div>
       )}
     </div>
-  );
+    */}
+
+    <FlowluApiExplorer />
+  </>
+);
 }
 
 export default App;
